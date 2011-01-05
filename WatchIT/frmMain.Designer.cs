@@ -52,7 +52,6 @@
 			this.lvPaths.ContextMenuStrip = this.lvPathsMenuStrip;
 			this.lvPaths.FullRowSelect = true;
 			this.lvPaths.Location = new System.Drawing.Point(12, 12);
-			this.lvPaths.MultiSelect = false;
 			this.lvPaths.Name = "lvPaths";
 			this.lvPaths.Size = new System.Drawing.Size(360, 222);
 			this.lvPaths.TabIndex = 0;

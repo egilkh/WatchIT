@@ -21,21 +21,26 @@ namespace WatchIT {
 			InitializeComponent();
 			this.UpdateComponents();
 
-			this.timerInfo.Interval = 1000;
+			this.Project.OnChange += delegate {
+				Console.WriteLine("Project has changed!");
+			};
 		}
 
 		private void frmInfo_Load (object sender, EventArgs e) {
 			// databinds
-			this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::WatchIT.Properties.Settings.Default, "frmInfo_Position", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-			this.DataBindings.Add(new System.Windows.Forms.Binding("Size", global::WatchIT.Properties.Settings.Default, "frmInfo_Size", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+			//this.DataBindings.Add(new System.Windows.Forms.Binding("Location", this.Project, "Location", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+			//this.DataBindings.Add(new System.Windows.Forms.Binding("Size", this.Project, "Size", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
 
 			// set the databind stuff
-			this.Location = global::WatchIT.Properties.Settings.Default.frmInfo_Position;
-			this.Size = global::WatchIT.Properties.Settings.Default.frmInfo_Size;
+			this.Location = this.Project.Location;
+			this.Size = this.Project.Size;
 
 			this.lvChanges.FullRowSelect = true;
 			this.lvChanges.MultiSelect = true;
 
+			this.columnTime.Width = this.Project.ColumnWidthTime;
+			this.columnPath.Width = this.Project.ColumnWidthPath;
+			this.columnChange.Width = this.Project.ColumnWidthChange;
 
 			this.lvChanges.MouseMove += delegate(object so, MouseEventArgs se) {
 
@@ -69,6 +74,13 @@ namespace WatchIT {
 
 		private void frmInfo_FormClosing (object sender, FormClosingEventArgs e) {
 			this.Project.ShowingWindow = false;
+
+			this.Project.Location = this.Location;
+			this.Project.Size = this.Size;
+
+			this.Project.ColumnWidthTime = this.columnTime.Width;
+			this.Project.ColumnWidthPath = this.columnPath.Width;
+			this.Project.ColumnWidthChange = this.columnChange.Width;
 		}
 
 		private void UpdateComponents () {

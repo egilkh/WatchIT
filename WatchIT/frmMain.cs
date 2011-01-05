@@ -72,7 +72,7 @@ namespace WatchIT {
 			// force update
 			//this.UpdateListBox();
 
-			this.FormTimer.Interval = 100;
+			this.FormTimer.Interval = 500;
 			this.FormTimer.Start();
 
 			this.FormTimer.Tick += delegate {
@@ -81,7 +81,6 @@ namespace WatchIT {
 					this.UpdateListBox();
 					this.ShouldRefresh = false;
 				}
-				Console.WriteLine(this.Projects[0].ShowingWindow.ToString());
 				d("FormTimer.Tick - End");
 			};
 
@@ -197,7 +196,7 @@ namespace WatchIT {
 					ChangeType = changeType,
 					Fullpath = fullPath
 				};
-				p.Changes.Add(npc);
+				p.AddChange(npc);
 
 				this.ShouldRefresh = true;
 
@@ -280,15 +279,12 @@ namespace WatchIT {
 
 		private void removeToolStripMenuItem_Click (object sender, EventArgs e) {
 
-			if (this.lvPaths.SelectedItems.Count < 1) {
-				return;
+			foreach (ListViewItem lvi in this.lvPaths.SelectedItems) {
+				Project p = lvi.Tag as Project;
+				this.lvPaths.Items.RemoveAt(lvi.Index);
+				this.RemoveWatcher(p);
+				this.Projects.Remove(p);
 			}
-
-			Project p = this.lvPaths.SelectedItems[0].Tag as Project;
-			this.lvPaths.Items.RemoveAt(this.lvPaths.SelectedItems[0].Index);
-			this.RemoveWatcher(p);
-			this.Projects.Remove(p);
-			
 
 			this.ShouldRefresh = true;
 
@@ -299,8 +295,10 @@ namespace WatchIT {
 				return;
 			}
 
-			Project p = this.lvPaths.SelectedItems[0].Tag as Project;
-			p.Changes.Clear();
+			foreach (ListViewItem lvi in this.lvPaths.SelectedItems) {
+				(this.lvPaths.SelectedItems[0].Tag as Project).Changes.Clear();
+			}
+
 			this.ShouldRefresh = true;
 		}
 
