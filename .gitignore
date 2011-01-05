@@ -1,0 +1,14 @@
+﻿obj
+bin
+deploy
+deploy/*
+*.csproj.user
+*.usertasks
+*.userprefs
+*.resharper.user
+*.resharper
+*.suo
+*.cache
+~$*
+**/bin
+**/obj
