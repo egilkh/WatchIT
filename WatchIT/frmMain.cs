@@ -69,6 +69,12 @@ namespace WatchIT {
 					Text = p.Changes.Count.ToString()
 				});
 				this.lvPaths.Items.Add(l);
+
+				if (p.ShowingWindow == true) {
+					frmInfo fi = new frmInfo(p);
+					fi.Show();
+				}
+
 			};
 
 			this.Projects.OnChange += delegate(object s, Project p) {
@@ -160,7 +166,7 @@ namespace WatchIT {
 			}
 
 			foreach (ListViewItem lvi in this.lvPaths.SelectedItems) {
-				(this.lvPaths.SelectedItems[0].Tag as Project).Changes.Clear();
+				(this.lvPaths.SelectedItems[0].Tag as Project).ClearChanges();
 			}
 
 		}

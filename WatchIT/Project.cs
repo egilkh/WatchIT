@@ -33,7 +33,7 @@ namespace WatchIT {
 		#endregion
 
 		[NonSerialized]
-		System.IO.FileSystemWatcher FSW = new System.IO.FileSystemWatcher();
+		private System.IO.FileSystemWatcher FSW = new System.IO.FileSystemWatcher();
 
 		public void AddChange (Change c) {
 			if (!this.Changes.Contains(c)) {
@@ -41,6 +41,13 @@ namespace WatchIT {
 				if (this.OnChange != null) {
 					this.OnChange(this, c);
 				}
+			}
+		}
+
+		public void ClearChanges () {
+			this.Changes.Clear();
+			if (this.OnChange != null) {
+				this.OnChange(this, null);
 			}
 		}
 

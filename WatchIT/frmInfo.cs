@@ -93,6 +93,11 @@ namespace WatchIT {
 		}
 
 		private void UpdateChanges (object sender, Project.Change c) {
+
+			if (c == null && this.Project.Changes.Count == 0) {
+				this.lvChanges.Items.Clear();
+			}
+
 			foreach (ListViewItem lvi in this.lvChanges.Items) {
 				Project.Change cc = lvi.Tag as Project.Change;
 				if (cc == c) {
@@ -104,6 +109,11 @@ namespace WatchIT {
 		}
 
 		private void AddChangeToList (Project.Change c) {
+
+			if (c == null) {
+				return;
+			}
+
 			ListViewItem l = new ListViewItem();
 			l.Tag = c;
 			l.Text = c.Time.ToLongTimeString();
@@ -111,6 +121,8 @@ namespace WatchIT {
 			l.SubItems.Add(new ListViewItem.ListViewSubItem(l, c.ChangeType.ToString()));
 			l.ToolTipText = "Added and such!";
 			this.lvChanges.Items.Add(l);
+
+			this.lvChanges.Update();
 		}
 
 	}

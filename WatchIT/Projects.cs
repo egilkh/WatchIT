@@ -10,19 +10,19 @@ namespace WatchIT {
 
 		public delegate void EventHandler (object sender, Project p);
 
-		// For every change that happens to any project
+		// any change in a project
 		public event EventHandler OnChange;
-		// Project Added
+		// a project added
 		public event EventHandler OnAdd;
-		// Project Removed
+		// a project removed
 		public event EventHandler OnRemove;
-		// When list is cleared
+		// all projects removed
 		public event EventHandler OnClear;
 
 		// internal list
 		List<Project> projects = new List<Project>();
 
-		public System.Windows.Forms.Form form = null;
+		private System.Windows.Forms.Form form = null;
 
 		public Projects () {
 		}
