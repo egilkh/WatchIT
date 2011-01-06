@@ -26,12 +26,12 @@ namespace WatchIT.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10, 10")]
-        public global::System.Drawing.Point frmMain_Position {
+        public global::System.Drawing.Point frmMain_Location {
             get {
-                return ((global::System.Drawing.Point)(this["frmMain_Position"]));
+                return ((global::System.Drawing.Point)(this["frmMain_Location"]));
             }
             set {
-                this["frmMain_Position"] = value;
+                this["frmMain_Location"] = value;
             }
         }
         
@@ -56,30 +56,6 @@ namespace WatchIT.Properties {
             }
             set {
                 this["Projects"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10, 10")]
-        public global::System.Drawing.Point frmInfo_Position {
-            get {
-                return ((global::System.Drawing.Point)(this["frmInfo_Position"]));
-            }
-            set {
-                this["frmInfo_Position"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("400, 500")]
-        public global::System.Drawing.Size frmInfo_Size {
-            get {
-                return ((global::System.Drawing.Size)(this["frmInfo_Size"]));
-            }
-            set {
-                this["frmInfo_Size"] = value;
             }
         }
         
@@ -116,6 +92,30 @@ namespace WatchIT.Properties {
             }
             set {
                 this["columnChanges_Width"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10, 10")]
+        public global::System.Drawing.Point frmInfo_Location {
+            get {
+                return ((global::System.Drawing.Point)(this["frmInfo_Location"]));
+            }
+            set {
+                this["frmInfo_Location"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("400, 500")]
+        public global::System.Drawing.Size frmInfo_Size {
+            get {
+                return ((global::System.Drawing.Size)(this["frmInfo_Size"]));
+            }
+            set {
+                this["frmInfo_Size"] = value;
             }
         }
     }

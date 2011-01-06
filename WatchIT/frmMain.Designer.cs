@@ -127,7 +127,6 @@
 			this.Controls.Add(this.ckbBasename);
 			this.Controls.Add(this.lvPaths);
 			this.MaximizeBox = false;
-			this.MinimizeBox = false;
 			this.Name = "frmMain";
 			this.Text = "WatchIT";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);

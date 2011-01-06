@@ -21,9 +21,7 @@ namespace WatchIT {
 			InitializeComponent();
 			this.UpdateComponents();
 
-			this.Project.OnChange += delegate {
-				Console.WriteLine("Project has changed!");
-			};
+			this.Project.OnChange += this.UpdateChanges;
 		}
 
 		private void frmInfo_Load (object sender, EventArgs e) {
@@ -95,6 +93,26 @@ namespace WatchIT {
 				this.lvChanges.Items.Add(l);
 			}
 
+		}
+
+		private void UpdateChanges (object sender, Project.Change c) {
+			// TODO: For each change, check if it's in the listview, if not add a new item
+			// Prevents the blinking effect then .clear is used.
+			Console.WriteLine("Change detected");
+
+			foreach (ListViewItem lvi in this.lvChanges.Items) {
+				Project.Change cc = lvi.Tag as Project.Change;
+				if (cc == c) {
+					return;
+				}
+			}
+
+			ListViewItem l = new ListViewItem();
+			l.Tag = c;
+			l.Text = c.Time.ToLongTimeString();
+			l.SubItems.Add(new ListViewItem.ListViewSubItem(l, c.Fullpath.Remove(0, this.Project.Path.Length + 1)));
+			l.SubItems.Add(new ListViewItem.ListViewSubItem(l, c.ChangeType.ToString()));
+			this.lvChanges.Items.Add(l);
 		}
 
 	}

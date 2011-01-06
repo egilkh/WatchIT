@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WatchIT.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="frmMain_Position" Type="System.Drawing.Point" Scope="User">
+    <Setting Name="frmMain_Location" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">10, 10</Value>
     </Setting>
     <Setting Name="frmMain_Size" Type="System.Drawing.Size" Scope="User">
@@ -10,12 +10,6 @@
     </Setting>
     <Setting Name="Projects" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="frmInfo_Position" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">10, 10</Value>
-    </Setting>
-    <Setting Name="frmInfo_Size" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">400, 500</Value>
     </Setting>
     <Setting Name="ckbBasename_Checked" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -25,6 +19,12 @@
     </Setting>
     <Setting Name="columnChanges_Width" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">60</Value>
+    </Setting>
+    <Setting Name="frmInfo_Location" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">10, 10</Value>
+    </Setting>
+    <Setting Name="frmInfo_Size" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">400, 500</Value>
     </Setting>
   </Settings>
 </SettingsFile>
