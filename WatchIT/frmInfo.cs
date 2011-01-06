@@ -13,6 +13,8 @@ namespace WatchIT {
 
 		private Timer timerInfo = new Timer();
 
+		private ToolTip ToolTip = new ToolTip();
+
 		public frmInfo (Project p) {
 
 			this.Project = p;
@@ -35,6 +37,7 @@ namespace WatchIT {
 
 			this.lvChanges.FullRowSelect = true;
 			this.lvChanges.MultiSelect = true;
+			this.lvChanges.ShowItemToolTips = true;
 
 			this.columnTime.Width = this.Project.ColumnWidthTime;
 			this.columnPath.Width = this.Project.ColumnWidthPath;
@@ -84,22 +87,12 @@ namespace WatchIT {
 		private void UpdateComponents () {
 			this.Text = "Path Info: " + this.Project.Path;
 
-			foreach (Project.Change pc in this.Project.Changes) {
-				ListViewItem l = new ListViewItem();
-				l.Tag = pc;
-				l.Text = pc.Time.ToLongTimeString();
-				l.SubItems.Add(new ListViewItem.ListViewSubItem(l, pc.Fullpath.Remove(0, this.Project.Path.Length + 1)));
-				l.SubItems.Add(new ListViewItem.ListViewSubItem(l, pc.ChangeType.ToString()));
-				this.lvChanges.Items.Add(l);
+			foreach (Project.Change c in this.Project.Changes) {
+				this.AddChangeToList(c);
 			}
-
 		}
 
 		private void UpdateChanges (object sender, Project.Change c) {
-			// TODO: For each change, check if it's in the listview, if not add a new item
-			// Prevents the blinking effect then .clear is used.
-			Console.WriteLine("Change detected");
-
 			foreach (ListViewItem lvi in this.lvChanges.Items) {
 				Project.Change cc = lvi.Tag as Project.Change;
 				if (cc == c) {
@@ -107,11 +100,16 @@ namespace WatchIT {
 				}
 			}
 
+			this.AddChangeToList(c);
+		}
+
+		private void AddChangeToList (Project.Change c) {
 			ListViewItem l = new ListViewItem();
 			l.Tag = c;
 			l.Text = c.Time.ToLongTimeString();
 			l.SubItems.Add(new ListViewItem.ListViewSubItem(l, c.Fullpath.Remove(0, this.Project.Path.Length + 1)));
 			l.SubItems.Add(new ListViewItem.ListViewSubItem(l, c.ChangeType.ToString()));
+			l.ToolTipText = "Added and such!";
 			this.lvChanges.Items.Add(l);
 		}
 
