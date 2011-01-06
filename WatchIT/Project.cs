@@ -32,8 +32,23 @@ namespace WatchIT {
 		public int ColumnWidthChange = 60;
 		#endregion
 
-		[NonSerialized]
+		[NonSerialized()]
 		private System.IO.FileSystemWatcher FSW = new System.IO.FileSystemWatcher();
+
+		[NonSerialized()]
+		private System.Windows.Forms.Form window = null;
+
+		public System.Windows.Forms.Form Window (System.Windows.Forms.Form f) {
+			this.window = f;
+			f.FormClosed += delegate {
+				this.window = null;
+			};
+			return this.window;
+		}
+
+		public System.Windows.Forms.Form Window () {
+			return(this.window);
+		}
 
 		public void AddChange (Change c) {
 			if (!this.Changes.Contains(c)) {
@@ -61,7 +76,9 @@ namespace WatchIT {
 		~Project () {
 			this.FSW.EnableRaisingEvents = false;
 			this.FSW.Dispose();
-			Console.WriteLine("~Project()");
+			if (this.window != null) {
+				this.Window().Close();
+			}
 		}
 
 		public bool Setup (System.Windows.Forms.Form form) {

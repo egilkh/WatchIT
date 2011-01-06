@@ -71,8 +71,8 @@ namespace WatchIT {
 				this.lvPaths.Items.Add(l);
 
 				if (p.ShowingWindow == true) {
-					frmInfo fi = new frmInfo(p);
-					fi.Show();
+					p.Window(new frmInfo(p));
+					p.Window().Show();
 				}
 
 			};
@@ -178,8 +178,17 @@ namespace WatchIT {
 
 			Project p = this.lvPaths.SelectedItems[0].Tag as Project;
 			if (!p.ShowingWindow) {
-				frmInfo fi = new frmInfo(p);
-				fi.Show();
+				if (p.Window() != null) {
+					p.Window().Show();
+					p.Window().BringToFront();
+				} else {
+					p.Window(new frmInfo(p));
+					p.Window().Show();
+					p.Window().BringToFront();
+				}
+			} else {
+				p.Window().Show();
+				p.Window().BringToFront();
 			}
 		}
 

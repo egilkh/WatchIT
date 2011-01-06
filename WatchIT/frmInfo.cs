@@ -27,11 +27,15 @@ namespace WatchIT {
 		}
 
 		private void frmInfo_Load (object sender, EventArgs e) {
-			// databinds
-			//this.DataBindings.Add(new System.Windows.Forms.Binding("Location", this.Project, "Location", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-			//this.DataBindings.Add(new System.Windows.Forms.Binding("Size", this.Project, "Size", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
 
-			// set the databind stuff
+			this.Move += delegate (object s, EventArgs ee) {
+				this.Project.Location = this.Location;
+			};
+
+			this.Resize += delegate {
+				this.Project.Size = this.Size;
+			};
+			
 			this.Location = this.Project.Location;
 			this.Size = this.Project.Size;
 
