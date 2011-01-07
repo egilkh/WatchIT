@@ -99,9 +99,8 @@ namespace WatchIT {
 		private void UpdateChanges (object sender, Project.Change c) {
 
 			if (c == null && this.Project.Changes.Count == 0) {
+				// happens when main window does a Clear on a project
 				this.lvChanges.Items.Clear();
-			} else if (c == null && this.Project.Changes.Count > 0) {
-				Console.WriteLine("removal?");
 			}
 
 			foreach (ListViewItem lvi in this.lvChanges.Items) {
