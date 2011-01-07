@@ -28,10 +28,14 @@
 		/// </summary>
 		private void InitializeComponent ()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.lvChanges = new System.Windows.Forms.ListView();
 			this.columnTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnChange = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.lvChangesMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.lvChangesMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lvChanges
@@ -43,6 +47,7 @@
             this.columnTime,
             this.columnPath,
             this.columnChange});
+			this.lvChanges.ContextMenuStrip = this.lvChangesMenuStrip;
 			this.lvChanges.Location = new System.Drawing.Point(12, 12);
 			this.lvChanges.Name = "lvChanges";
 			this.lvChanges.Size = new System.Drawing.Size(360, 438);
@@ -63,6 +68,20 @@
 			// 
 			this.columnChange.Text = "Change";
 			// 
+			// lvChangesMenuStrip
+			// 
+			this.lvChangesMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearToolStripMenuItem});
+			this.lvChangesMenuStrip.Name = "lvChangesMenuStrip";
+			this.lvChangesMenuStrip.Size = new System.Drawing.Size(153, 48);
+			// 
+			// clearToolStripMenuItem
+			// 
+			this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
+			this.clearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.clearToolStripMenuItem.Text = "Clear";
+			this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
+			// 
 			// frmInfo
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -74,6 +93,7 @@
 			this.Text = "Path Info";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmInfo_FormClosing);
 			this.Load += new System.EventHandler(this.frmInfo_Load);
+			this.lvChangesMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -84,5 +104,7 @@
 		private System.Windows.Forms.ColumnHeader columnTime;
 		private System.Windows.Forms.ColumnHeader columnPath;
 		private System.Windows.Forms.ColumnHeader columnChange;
+		private System.Windows.Forms.ContextMenuStrip lvChangesMenuStrip;
+		private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
 	}
 }

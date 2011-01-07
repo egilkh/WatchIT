@@ -53,17 +53,20 @@ namespace WatchIT {
 		public void AddChange (Change c) {
 			if (!this.Changes.Contains(c)) {
 				this.Changes.Add(c);
-				if (this.OnChange != null) {
-					this.OnChange(this, c);
-				}
+				if (this.OnChange != null) { this.OnChange(this, c); }
+			}
+		}
+
+		public void RemoveChange (Change c) {
+			if (this.Changes.Contains(c)) {
+				this.Changes.Remove(c);
+				if (this.OnChange != null) { this.OnChange(this, null); }
 			}
 		}
 
 		public void ClearChanges () {
 			this.Changes.Clear();
-			if (this.OnChange != null) {
-				this.OnChange(this, null);
-			}
+			if (this.OnChange != null) { this.OnChange(this, null); }
 		}
 
 		public Project () {

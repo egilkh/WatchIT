@@ -62,7 +62,6 @@ namespace WatchIT {
 						Project.Change pc = lvi.Tag as Project.Change;
 
 						if (pc.ChangeType != System.IO.WatcherChangeTypes.Deleted) {
-							Console.WriteLine(pc.Fullpath);
 							files.Add(pc.Fullpath);
 						}
 
@@ -70,6 +69,7 @@ namespace WatchIT {
 
 					// no need to create dragdrop with no files
 					if (files.Count > 0) {
+						files.ForEach(f => Console.WriteLine(f));
 						this.DoDragDrop(new DataObject(DataFormats.FileDrop, files.ToArray()), DragDropEffects.Copy);
 					}
 				}
@@ -86,7 +86,7 @@ namespace WatchIT {
 			this.Project.ColumnWidthTime = this.columnTime.Width;
 			this.Project.ColumnWidthPath = this.columnPath.Width;
 			this.Project.ColumnWidthChange = this.columnChange.Width;
-		}
+		}         
 
 		private void UpdateComponents () {
 			this.Text = "Path Info: " + this.Project.Path;
@@ -100,6 +100,8 @@ namespace WatchIT {
 
 			if (c == null && this.Project.Changes.Count == 0) {
 				this.lvChanges.Items.Clear();
+			} else if (c == null && this.Project.Changes.Count > 0) {
+				Console.WriteLine("removal?");
 			}
 
 			foreach (ListViewItem lvi in this.lvChanges.Items) {
@@ -127,6 +129,18 @@ namespace WatchIT {
 			this.lvChanges.Items.Add(l);
 
 			this.lvChanges.Update();
+		}
+
+		private void clearToolStripMenuItem_Click (object sender, EventArgs e) {
+
+			foreach (ListViewItem lvi in this.lvChanges.SelectedItems) {
+
+				Project.Change pc = lvi.Tag as Project.Change;
+				this.Project.RemoveChange(pc);
+				this.lvChanges.Items.Remove(lvi);
+
+			}
+
 		}
 
 	}
