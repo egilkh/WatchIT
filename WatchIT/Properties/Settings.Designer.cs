@@ -118,5 +118,29 @@ namespace WatchIT.Properties {
                 this["frmInfo_Size"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int lvPaths_Sorting {
+            get {
+                return ((int)(this["lvPaths_Sorting"]));
+            }
+            set {
+                this["lvPaths_Sorting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int lvPaths_SortColumn {
+            get {
+                return ((int)(this["lvPaths_SortColumn"]));
+            }
+            set {
+                this["lvPaths_SortColumn"] = value;
+            }
+        }
     }
 }

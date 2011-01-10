@@ -14,6 +14,8 @@ namespace WatchIT {
 		private Projects Projects = null; // allocated in constructor
 		private ToolTip toolTip = new ToolTip();
 
+		private int SortColumn = 0;
+
 #if DEBUG
 		private void d (string s) {
 			Console.WriteLine(s);
@@ -104,7 +106,12 @@ namespace WatchIT {
 			};
 
 			// Sortingz
+			this.lvPaths.AutoArrange = true; // keep itams sorted
 			this.lvPaths.ColumnClick += this.lvPaths_OnColumnClick;
+			this.lvPaths.Sorting = (SortOrder)(Properties.Settings.Default.lvPaths_Sorting);
+			this.SortColumn = Properties.Settings.Default.lvPaths_SortColumn;
+			this.lvPaths.ListViewItemSorter = new ListViewItemComparer(this.SortColumn, this.lvPaths.Sorting);
+			this.lvPaths.Sort();
 
 		}
 
@@ -113,6 +120,7 @@ namespace WatchIT {
 		}
 
 		private void lvPaths_OnColumnClick (object s, ColumnClickEventArgs e) {
+			this.SortColumn = e.Column;
 			this.lvPaths.Sorting = this.lvPaths.Sorting == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
 			this.lvPaths.ListViewItemSorter = new ListViewItemComparer(e.Column, this.lvPaths.Sorting);
 			this.lvPaths.Sort();
@@ -133,6 +141,10 @@ namespace WatchIT {
 
 			// checkbox
 			Properties.Settings.Default.ckbBasename_Checked = this.ckbBasename.Checked;
+
+			// Sorting
+			Properties.Settings.Default.lvPaths_Sorting = (int)this.lvPaths.Sorting;
+			Properties.Settings.Default.lvPaths_SortColumn = this.SortColumn;
 
 			//
 			Properties.Settings.Default.Save();
