@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace WatchIT
-{
-	static class Program
-	{
+namespace WatchIT {
+
+	static class Program {
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		static void Main ()
-		{
+		static void Main () {
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new frmMain());
 		}
 	}
-}
+
+} // namespace

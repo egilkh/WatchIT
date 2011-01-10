@@ -19,8 +19,7 @@ namespace WatchIT {
 			Console.WriteLine(s);
 		}
 #else
-		private void d (string s)
-		{
+		private void d (string s) {
 		}
 #endif
 
@@ -29,24 +28,20 @@ namespace WatchIT {
 		}
 
 		private void MainForm_Load (object sender, EventArgs e) {
-			// tooltipz
+
 			this.toolTip.SetToolTip(this.ckbBasename, "Only show the name of the last directory in listing.");
 
-			// databinds
-			//this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::WatchIT.Properties.Settings.Default, "frmMain_Position", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-			//this.DataBindings.Add(new System.Windows.Forms.Binding("Size", global::WatchIT.Properties.Settings.Default, "frmMain_Size", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-
+			// 
 			this.Location = global::WatchIT.Properties.Settings.Default.frmMain_Location;
 			this.Size = global::WatchIT.Properties.Settings.Default.frmMain_Size;
-
-			//
-			this.ckbBasename.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::WatchIT.Properties.Settings.Default, "ckbBasename_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-			this.ckbBasename.Checked = global::WatchIT.Properties.Settings.Default.ckbBasename_Checked;
 
 			//
 			this.columnPath.Width = global::WatchIT.Properties.Settings.Default.columnPath_Width;
 			this.columnChanges.Width = global::WatchIT.Properties.Settings.Default.columnChanges_Width;
 
+			//
+			//this.ckbBasename.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::WatchIT.Properties.Settings.Default, "ckbBasename_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+			this.ckbBasename.Checked = global::WatchIT.Properties.Settings.Default.ckbBasename_Checked;
 
 			// deserialize 
 			Serialization ser = new Serialization();
@@ -113,7 +108,10 @@ namespace WatchIT {
 		}
 
 		private void MainForm_FormClosing (object sender, FormClosingEventArgs e) {
+			this.SaveSettings();
+		}
 
+		private void SaveSettings () {
 			// save projects
 			Serialization ser = new Serialization();
 			Properties.Settings.Default.Projects = ser.SerializeObject(this.Projects);
@@ -122,10 +120,14 @@ namespace WatchIT {
 			global::WatchIT.Properties.Settings.Default.columnPath_Width = columnPath.Width;
 			global::WatchIT.Properties.Settings.Default.columnChanges_Width = columnChanges.Width;
 
+			// form
 			global::WatchIT.Properties.Settings.Default.frmMain_Location = this.Location;
 			global::WatchIT.Properties.Settings.Default.frmMain_Size = this.Size;
 
+			// checkbox
+			global::WatchIT.Properties.Settings.Default.ckbBasename_Checked = this.ckbBasename.Checked;
 
+			//
 			Properties.Settings.Default.Save();
 		}
 		
@@ -142,7 +144,7 @@ namespace WatchIT {
 			FolderBrowserDialog fbd = new FolderBrowserDialog();
 			if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
 				if (!System.IO.Directory.Exists(fbd.SelectedPath)) {
-					throw new Exception("Holy tits Batman! This is bad stuffs.");
+					throw new Exception("User provided a bad folder path to add as a project.");
 				}
 
 				this.Projects.Add(fbd.SelectedPath);
@@ -161,9 +163,6 @@ namespace WatchIT {
 		}
 
 		private void clearToolStripMenuItem_Click (object sender, EventArgs e) {
-			if (this.lvPaths.SelectedItems.Count < 1) {
-				return;
-			}
 
 			foreach (ListViewItem lvi in this.lvPaths.SelectedItems) {
 				(this.lvPaths.SelectedItems[0].Tag as Project).ClearChanges();
@@ -172,24 +171,22 @@ namespace WatchIT {
 		}
 
 		private void lvPaths_DoubleClick (object sender, EventArgs e) {
-			if (this.lvPaths.SelectedItems.Count < 1) {
-				return;
+
+			foreach (ListViewItem lvi in this.lvPaths.SelectedItems) {
+
+				Project p = lvi.Tag as Project;
+				if (!p.ShowingWindow) {
+					if (p.Window() == null) {
+						p.Window(new frmInfo(p));
+					}
+				}
+
+				p.Window().Show();
+				p.Window().WindowState = FormWindowState.Normal;
+				p.Window().BringToFront();
+
 			}
 
-			Project p = this.lvPaths.SelectedItems[0].Tag as Project;
-			if (!p.ShowingWindow) {
-				if (p.Window() != null) {
-					p.Window().Show();
-					p.Window().BringToFront();
-				} else {
-					p.Window(new frmInfo(p));
-					p.Window().Show();
-					p.Window().BringToFront();
-				}
-			} else {
-				p.Window().Show();
-				p.Window().BringToFront();
-			}
 		}
 
 
