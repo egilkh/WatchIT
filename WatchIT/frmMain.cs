@@ -32,15 +32,15 @@ namespace WatchIT {
 			this.toolTip.SetToolTip(this.ckbBasename, "Only show the name of the last directory in listing.");
 
 			// 
-			this.Location = global::WatchIT.Properties.Settings.Default.frmMain_Location;
-			this.Size = global::WatchIT.Properties.Settings.Default.frmMain_Size;
+			this.Location = Properties.Settings.Default.frmMain_Location;
+			this.Size = Properties.Settings.Default.frmMain_Size;
 
 			//
-			this.columnPath.Width = global::WatchIT.Properties.Settings.Default.columnPath_Width;
-			this.columnChanges.Width = global::WatchIT.Properties.Settings.Default.columnChanges_Width;
+			this.columnPath.Width = Properties.Settings.Default.columnPath_Width;
+			this.columnChanges.Width = Properties.Settings.Default.columnChanges_Width;
 
 			//
-			this.ckbBasename.Checked = global::WatchIT.Properties.Settings.Default.ckbBasename_Checked;
+			this.ckbBasename.Checked = Properties.Settings.Default.ckbBasename_Checked;
 
 			// deserialize 
 			Serialization ser = new Serialization();
@@ -103,6 +103,7 @@ namespace WatchIT {
 				}
 			};
 
+			// Sortingz
 			this.lvPaths.ColumnClick += this.lvPaths_OnColumnClick;
 
 		}
@@ -123,15 +124,15 @@ namespace WatchIT {
 			Properties.Settings.Default.Projects = ser.SerializeObject(this.Projects);
 
 			// save sizes for column
-			global::WatchIT.Properties.Settings.Default.columnPath_Width = columnPath.Width;
-			global::WatchIT.Properties.Settings.Default.columnChanges_Width = columnChanges.Width;
+			Properties.Settings.Default.columnPath_Width = columnPath.Width;
+			Properties.Settings.Default.columnChanges_Width = columnChanges.Width;
 
 			// form
-			global::WatchIT.Properties.Settings.Default.frmMain_Location = this.Location;
-			global::WatchIT.Properties.Settings.Default.frmMain_Size = this.Size;
+			Properties.Settings.Default.frmMain_Location = this.Location;
+			Properties.Settings.Default.frmMain_Size = this.Size;
 
 			// checkbox
-			global::WatchIT.Properties.Settings.Default.ckbBasename_Checked = this.ckbBasename.Checked;
+			Properties.Settings.Default.ckbBasename_Checked = this.ckbBasename.Checked;
 
 			//
 			Properties.Settings.Default.Save();
