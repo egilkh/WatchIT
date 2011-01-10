@@ -17,6 +17,9 @@ changed. Thus the tool!
 	
 ## Misc
 
-Icon is created using an image from orangeacid on flickr.com.
-http://flickr.com/orangeacid, image used is 'My eye' and can be found at
-http://www.flickr.com/photos/orangeacid/234358923
+Icon was created using the image ['My eye'][myeye] created by
+[orangeacid][orangeacid] on [flickr.com][flickr.com].
+
+[orangeacid]: http://www.flickr.com/photos/orangeacid "orangeacid on flickr.com"
+[flickr.com]: flickr.com "flickr.com"
+[myeye]: http://www.flickr.com/photos/orangeacid/234358923 "My eye"
