@@ -39,10 +39,7 @@ namespace WatchIT {
 			this.columnPath.Width = global::WatchIT.Properties.Settings.Default.columnPath_Width;
 			this.columnChanges.Width = global::WatchIT.Properties.Settings.Default.columnChanges_Width;
 
-			this.lvPaths.ColumnClick += this.lvPaths_OnColumnClick;
-
 			//
-			//this.ckbBasename.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::WatchIT.Properties.Settings.Default, "ckbBasename_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
 			this.ckbBasename.Checked = global::WatchIT.Properties.Settings.Default.ckbBasename_Checked;
 
 			// deserialize 
@@ -99,13 +96,14 @@ namespace WatchIT {
 				string[] files = (string[])se.Data.GetData(DataFormats.FileDrop);
 
 				foreach (string file in files) {
-					// TODO: HOOK UP IF NOT EXISTS AND GO!
 					if (!System.IO.Directory.Exists(file)) {
 						return;
 					}
 					this.Projects.Add(file);
 				}
 			};
+
+			this.lvPaths.ColumnClick += this.lvPaths_OnColumnClick;
 
 		}
 
@@ -140,6 +138,8 @@ namespace WatchIT {
 		}
 		
 		private void UpdateListBox () {
+			// force a refresh of the entire listbox
+			// TODO: Could there be a hidden gem somewhere that let's us do this better ?
 			foreach (ListViewItem lvi in this.lvPaths.Items) {
 				Project p = lvi.Tag as Project;
 				lvi.Text = (this.ckbBasename.Checked) ? p.Path.Substring(p.Path.LastIndexOf('\\') + 1) : p.Path;
@@ -196,8 +196,6 @@ namespace WatchIT {
 			}
 
 		}
-
-
 
 		private void ckbBasename_CheckedChanged (object sender, EventArgs e) {
 			this.UpdateListBox();
