@@ -39,6 +39,8 @@ namespace WatchIT {
 			this.columnPath.Width = global::WatchIT.Properties.Settings.Default.columnPath_Width;
 			this.columnChanges.Width = global::WatchIT.Properties.Settings.Default.columnChanges_Width;
 
+			this.lvPaths.ColumnClick += this.lvPaths_OnColumnClick;
+
 			//
 			//this.ckbBasename.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::WatchIT.Properties.Settings.Default, "ckbBasename_Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
 			this.ckbBasename.Checked = global::WatchIT.Properties.Settings.Default.ckbBasename_Checked;
@@ -109,6 +111,12 @@ namespace WatchIT {
 
 		private void MainForm_FormClosing (object sender, FormClosingEventArgs e) {
 			this.SaveSettings();
+		}
+
+		private void lvPaths_OnColumnClick (object s, ColumnClickEventArgs e) {
+			this.lvPaths.Sorting = this.lvPaths.Sorting == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+			this.lvPaths.ListViewItemSorter = new ListViewItemComparer(e.Column, this.lvPaths.Sorting);
+			this.lvPaths.Sort();
 		}
 
 		private void SaveSettings () {
