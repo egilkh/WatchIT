@@ -17,9 +17,9 @@ changed. Thus the tool!
 	
 ## Misc
 
-Icon was created using the image ['My eye'][myeye] created by
+Icon was created using the image [My eye][myeye] created by
 [orangeacid][orangeacid] on [flickr.com][flickr.com].
 
 [orangeacid]: http://www.flickr.com/photos/orangeacid "orangeacid on flickr.com"
-[flickr.com]: flickr.com "flickr.com"
+[flickr.com]: http://www.flickr.com "flickr.com"
 [myeye]: http://www.flickr.com/photos/orangeacid/234358923 "My eye"
