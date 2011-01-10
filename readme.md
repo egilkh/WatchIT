@@ -8,8 +8,15 @@ that had either no source control and the only source was in a ftp. When
 these project became big it would become hard to track what files I had 
 changed. Thus the tool!
 
-Features:
-	Add/Remove Paths to monitor.
-	InfoWindow for each Path showing what has changed.
-	Ability to remove changes (one by one and everything)
-	DragDrop a change to another window (FileDrop)
+## Features
+
+* Add/Remove Paths to monitor.
+* InfoWindow for each Path showing what has changed.
+* Ability to remove changes (one by one and everything)
+* DragDrop a change to another window (FileDrop)
+	
+## Misc
+
+Icon is created using an image from orangeacid on flickr.com.
+http://flickr.com/orangeacid, image used is 'My eye' and can be found at
+http://www.flickr.com/photos/orangeacid/234358923
