@@ -30,6 +30,9 @@ namespace WatchIT {
 		public int ColumnWidthTime = 60;
 		public int ColumnWidthPath = 230;
 		public int ColumnWidthChange = 60;
+
+		public int SortColumn = 0;
+		public System.Windows.Forms.SortOrder SortOrder = System.Windows.Forms.SortOrder.Ascending;
 		#endregion
 
 		[NonSerialized()]

@@ -24,6 +24,20 @@ namespace WatchIT {
 			this.UpdateComponents();
 
 			this.Project.OnChange += this.UpdateChanges;
+
+			this.lvChanges.ColumnClick += this.lvChanges_OnColumnClick;
+			// initial sort
+			this.lvChanges.Sorting = this.Project.SortOrder;
+			this.lvChanges.ListViewItemSorter = new ListViewItemComparer(this.Project.SortColumn, this.Project.SortOrder);
+			this.lvChanges.Sort();
+		}
+
+		private void lvChanges_OnColumnClick (object s, ColumnClickEventArgs e) {
+			this.Project.SortOrder = (this.Project.SortOrder == SortOrder.Ascending) ? SortOrder.Descending : SortOrder.Ascending;
+			this.Project.SortColumn = e.Column;
+			this.lvChanges.Sorting = this.Project.SortOrder;
+			this.lvChanges.ListViewItemSorter = new ListViewItemComparer(this.Project.SortColumn, this.Project.SortOrder);
+			this.lvChanges.Sort();
 		}
 
 		private void frmInfo_Load (object sender, EventArgs e) {
