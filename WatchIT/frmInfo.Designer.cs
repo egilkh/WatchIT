@@ -55,6 +55,7 @@
 			this.lvChanges.TabIndex = 0;
 			this.lvChanges.UseCompatibleStateImageBehavior = false;
 			this.lvChanges.View = System.Windows.Forms.View.Details;
+			this.lvChanges.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvChanges_KeyDown);
 			// 
 			// columnTime
 			// 

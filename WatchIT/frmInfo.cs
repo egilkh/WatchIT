@@ -156,6 +156,22 @@ namespace WatchIT {
 
 		}
 
+		private void lvChanges_KeyDown (object sender, KeyEventArgs e) {
+			if (e.KeyCode == Keys.A && e.Control) {
+				foreach (ListViewItem lvi in this.lvChanges.Items) {
+					lvi.Selected = true;
+				}
+				return;
+			}
+
+			if (e.KeyCode == Keys.D && e.Control) {
+				foreach (ListViewItem lvi in this.lvChanges.Items) {
+					lvi.Selected = false;
+				}
+				return;
+			}
+		}
+
 	}
 
 } // Namespace

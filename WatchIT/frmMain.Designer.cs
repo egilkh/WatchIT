@@ -48,8 +48,8 @@
 						| System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.lvPaths.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-			this.columnPath,
-			this.columnChanges});
+            this.columnPath,
+            this.columnChanges});
 			this.lvPaths.ContextMenuStrip = this.lvPathsMenuStrip;
 			this.lvPaths.FullRowSelect = true;
 			this.lvPaths.Location = new System.Drawing.Point(12, 12);
@@ -59,6 +59,7 @@
 			this.lvPaths.UseCompatibleStateImageBehavior = false;
 			this.lvPaths.View = System.Windows.Forms.View.Details;
 			this.lvPaths.DoubleClick += new System.EventHandler(this.lvPaths_DoubleClick);
+			this.lvPaths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvPaths_KeyDown);
 			// 
 			// columnPath
 			// 
@@ -72,9 +73,9 @@
 			// lvPathsMenuStrip
 			// 
 			this.lvPathsMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.addToolStripMenuItem,
-			this.clearToolStripMenuItem,
-			this.removeToolStripMenuItem});
+            this.addToolStripMenuItem,
+            this.clearToolStripMenuItem,
+            this.removeToolStripMenuItem});
 			this.lvPathsMenuStrip.Name = "contextMenuStrip1";
 			this.lvPathsMenuStrip.Size = new System.Drawing.Size(118, 70);
 			// 

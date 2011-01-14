@@ -214,6 +214,22 @@ namespace WatchIT {
 			this.UpdateListBox();
 		}
 
+		private void lvPaths_KeyDown (object sender, KeyEventArgs e) {
+			if (e.KeyCode == Keys.A && e.Control) {
+				foreach (ListViewItem lvi in this.lvPaths.Items) {
+					lvi.Selected = true;
+				}
+				return;
+			}
+
+			if (e.KeyCode == Keys.D && e.Control) {
+				foreach (ListViewItem lvi in this.lvPaths.Items) {
+					lvi.Selected = false;
+				}
+				return;
+			}
+		}
+
 	}
 
 } // namespace
