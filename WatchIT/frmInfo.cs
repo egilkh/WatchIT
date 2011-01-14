@@ -83,7 +83,6 @@ namespace WatchIT {
 
 					// no need to create dragdrop with no files
 					if (files.Count > 0) {
-						files.ForEach(f => Console.WriteLine(f));
 						this.DoDragDrop(new DataObject(DataFormats.FileDrop, files.ToArray()), DragDropEffects.Copy);
 					}
 				}

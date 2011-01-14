@@ -113,10 +113,19 @@ namespace WatchIT {
 			this.lvPaths.ListViewItemSorter = new ListViewItemComparer(this.SortColumn, this.lvPaths.Sorting);
 			this.lvPaths.Sort();
 
+
+			// testing
+			this.Activated += this.MainForm_Activated;
+
+			
+
 		}
 
-		private void MainForm_FormClosing (object sender, FormClosingEventArgs e) {
+		private void MainForm_FormClosing (object s, FormClosingEventArgs e) {
 			this.SaveSettings();
+		}
+
+		private void MainForm_Activated (object s, EventArgs e) {
 		}
 
 		private void lvPaths_OnColumnClick (object s, ColumnClickEventArgs e) {

@@ -88,7 +88,6 @@ namespace WatchIT {
 		}
 
 		public bool Setup (System.Windows.Forms.Form form) {
-			Console.WriteLine("Project.Setup()");
 			this.FSW.Path = this.Path;
 			this.FSW.Changed += this.FSWAction;
 			this.FSW.Created += this.FSWAction;
