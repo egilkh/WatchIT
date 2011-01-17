@@ -15,7 +15,8 @@ namespace WatchIT {
 		private System.Windows.Forms.Form window = null;
 
 		public class Change {
-			public DateTime Time { get; set; }
+			public DateTime First { get; set; }
+			public DateTime Last { get; set; }
 			public string Fullpath { get; set; }
 			public System.IO.WatcherChangeTypes ChangeType { get; set; }
 		}
@@ -117,11 +118,14 @@ namespace WatchIT {
 			Project.Change pc = this.Changes.SingleOrDefault(pjc => pjc.Fullpath.Equals(fullPath) && pjc.ChangeType == changeType);
 			if (pc == null) {
 				Project.Change npc = new Project.Change() {
-					Time = DateTime.Now,
+					First = DateTime.Now,
+					Last = DateTime.Now,
 					ChangeType = changeType,
 					Fullpath = fullPath
 				};
 				this.AddChange(npc);
+			} else {
+				pc.Last = DateTime.Now;
 			}
 		}
 

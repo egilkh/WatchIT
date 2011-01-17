@@ -141,12 +141,13 @@ namespace WatchIT {
 
 			ListViewItem l = new ListViewItem();
 			l.Tag = c;
-			l.Text = c.Time.ToLongTimeString();
+			l.Text = c.Last.ToLongTimeString();
 			l.SubItems.Add(new ListViewItem.ListViewSubItem(l, c.Fullpath.Remove(0, this.Project.Path.Length + 1)));
 			l.SubItems.Add(new ListViewItem.ListViewSubItem(l, c.ChangeType.ToString()));
-			l.ToolTipText = "Added and such!";
-			this.lvChanges.Items.Add(l);
+			l.ToolTipText = "First: " + c.First.ToLongTimeString() + "\n"
+				+ "Last: " + c.Last.ToLongTimeString();
 
+			this.lvChanges.Items.Add(l);
 			this.lvChanges.Update();
 		}
 
