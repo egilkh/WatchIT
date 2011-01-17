@@ -81,10 +81,10 @@ namespace WatchIT {
 
 					}
 
-					// no need to create dragdrop with no files
 					if (files.Count > 0) {
 						this.DoDragDrop(new DataObject(DataFormats.FileDrop, files.ToArray()), DragDropEffects.Copy);
 					}
+
 				}
 
 			};
@@ -103,6 +103,8 @@ namespace WatchIT {
 
 		private void UpdateComponents () {
 			this.Text = "Path Info: " + this.Project.Path;
+
+			this.txtFilter.Text = this.Project.Filter;
 
 			foreach (Project.Change c in this.Project.Changes) {
 				this.AddChangeToList(c);
@@ -132,6 +134,11 @@ namespace WatchIT {
 				return;
 			}
 
+			if (!this.ChangePassesFilter(c)) {
+				Console.WriteLine("Filter stopped change!");
+				return;
+			}
+
 			ListViewItem l = new ListViewItem();
 			l.Tag = c;
 			l.Text = c.Time.ToLongTimeString();
@@ -143,14 +150,31 @@ namespace WatchIT {
 			this.lvChanges.Update();
 		}
 
+		public bool ChangePassesFilter (Project.Change c) {
+			// Will be used to check if this project allows for the change to be added
+			/*
+			 * Filter, ; separated list of values aka if should not be in 
+			 * any of the sequence Filter.Split(';')
+			 */
+
+			string[] filters = this.Project.Filter.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+			foreach (string f in filters) {
+				if (c.Fullpath.Contains(f)) {
+					// any match should terminate the check
+					return (false);
+				}
+			}
+
+			return (true);
+		}
+
 		private void clearToolStripMenuItem_Click (object sender, EventArgs e) {
 
 			foreach (ListViewItem lvi in this.lvChanges.SelectedItems) {
-
 				Project.Change pc = lvi.Tag as Project.Change;
 				this.Project.RemoveChange(pc);
 				this.lvChanges.Items.Remove(lvi);
-
 			}
 
 		}
@@ -169,6 +193,10 @@ namespace WatchIT {
 				}
 				return;
 			}
+		}
+
+		private void txtFilter_TextChanged (object sender, EventArgs e) {
+			this.Project.Filter = txtFilter.Text;
 		}
 
 	}

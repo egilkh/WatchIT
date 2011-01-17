@@ -36,6 +36,8 @@
 			this.columnChange = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.lvChangesMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.txtFilter = new System.Windows.Forms.TextBox();
+			this.lblFilter = new System.Windows.Forms.Label();
 			this.lvChangesMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -49,9 +51,9 @@
             this.columnPath,
             this.columnChange});
 			this.lvChanges.ContextMenuStrip = this.lvChangesMenuStrip;
-			this.lvChanges.Location = new System.Drawing.Point(12, 12);
+			this.lvChanges.Location = new System.Drawing.Point(12, 38);
 			this.lvChanges.Name = "lvChanges";
-			this.lvChanges.Size = new System.Drawing.Size(360, 438);
+			this.lvChanges.Size = new System.Drawing.Size(360, 412);
 			this.lvChanges.TabIndex = 0;
 			this.lvChanges.UseCompatibleStateImageBehavior = false;
 			this.lvChanges.View = System.Windows.Forms.View.Details;
@@ -84,11 +86,30 @@
 			this.clearToolStripMenuItem.Text = "Clear";
 			this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
 			// 
+			// txtFilter
+			// 
+			this.txtFilter.Location = new System.Drawing.Point(47, 12);
+			this.txtFilter.Name = "txtFilter";
+			this.txtFilter.Size = new System.Drawing.Size(325, 20);
+			this.txtFilter.TabIndex = 1;
+			this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
+			// 
+			// lblFilter
+			// 
+			this.lblFilter.AutoSize = true;
+			this.lblFilter.Location = new System.Drawing.Point(9, 15);
+			this.lblFilter.Name = "lblFilter";
+			this.lblFilter.Size = new System.Drawing.Size(32, 13);
+			this.lblFilter.TabIndex = 2;
+			this.lblFilter.Text = "Filter:";
+			// 
 			// frmInfo
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(384, 462);
+			this.Controls.Add(this.lblFilter);
+			this.Controls.Add(this.txtFilter);
 			this.Controls.Add(this.lvChanges);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "frmInfo";
@@ -98,6 +119,7 @@
 			this.Load += new System.EventHandler(this.frmInfo_Load);
 			this.lvChangesMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -109,5 +131,7 @@
 		private System.Windows.Forms.ColumnHeader columnChange;
 		private System.Windows.Forms.ContextMenuStrip lvChangesMenuStrip;
 		private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
+		private System.Windows.Forms.TextBox txtFilter;
+		private System.Windows.Forms.Label lblFilter;
 	}
 }

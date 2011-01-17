@@ -8,21 +8,29 @@ namespace WatchIT {
 	[Serializable]
 	public class Project {
 
+		[NonSerialized]
+		private System.IO.FileSystemWatcher FSW = new System.IO.FileSystemWatcher();
+
+		[NonSerialized]
+		private System.Windows.Forms.Form window = null;
+
 		public class Change {
 			public DateTime Time { get; set; }
 			public string Fullpath { get; set; }
 			public System.IO.WatcherChangeTypes ChangeType { get; set; }
 		}
 
-		#region Properties
+		// Events
+		public delegate void EventHandler (object sender, Change c);
+		public event EventHandler OnChange;
+
+		// These should get serialized
+		#region Serializeable Properties
 		public string Path { get; set; }
 
 		public List<Change> Changes = new List<Change>();
 		
 		public bool ShowingWindow = false;
-
-		public delegate void EventHandler (object sender, Change c);
-		public event EventHandler OnChange;
 
 		public System.Drawing.Point Location = Properties.Settings.Default.frmInfo_Location;
 		public System.Drawing.Size Size = Properties.Settings.Default.frmInfo_Size;
@@ -33,13 +41,13 @@ namespace WatchIT {
 
 		public int SortColumn = 0;
 		public System.Windows.Forms.SortOrder SortOrder = System.Windows.Forms.SortOrder.Ascending;
+
+		public string Filter = "";
 		#endregion
 
-		[NonSerialized()]
-		private System.IO.FileSystemWatcher FSW = new System.IO.FileSystemWatcher();
-
-		[NonSerialized()]
-		private System.Windows.Forms.Form window = null;
+		public System.Windows.Forms.Form Window () {
+			return (this.window);
+		}
 
 		public System.Windows.Forms.Form Window (System.Windows.Forms.Form f) {
 			this.window = f;
@@ -47,10 +55,6 @@ namespace WatchIT {
 				this.window = null;
 			};
 			return this.window;
-		}
-
-		public System.Windows.Forms.Form Window () {
-			return(this.window);
 		}
 
 		public void AddChange (Change c) {
@@ -89,28 +93,27 @@ namespace WatchIT {
 
 		public bool Setup (System.Windows.Forms.Form form) {
 			this.FSW.Path = this.Path;
-			this.FSW.Changed += this.FSWAction;
-			this.FSW.Created += this.FSWAction;
-			this.FSW.Deleted += this.FSWAction;
-			this.FSW.Renamed += this.FSWRenamed;
+			this.FSW.Changed += this.FSW_Action;
+			this.FSW.Created += this.FSW_Action;
+			this.FSW.Deleted += this.FSW_Action;
+			this.FSW.Renamed += this.FSW_Renamed;
 			this.FSW.IncludeSubdirectories = true;
 			this.FSW.EnableRaisingEvents = true;
 			this.FSW.SynchronizingObject = form;
 			return (true);
 		}
 
-		// ze renamed action
-		private void FSWRenamed (object sender, System.IO.RenamedEventArgs e) {
-			this.FSWAddEvent(e.OldFullPath, System.IO.WatcherChangeTypes.Deleted);
-			this.FSWAddEvent(e.FullPath, System.IO.WatcherChangeTypes.Renamed);
+		// Proxy for all events
+		private void FSW_Action (object sender, System.IO.FileSystemEventArgs e) {
+			this.FSW_AddEvent(e.FullPath, e.ChangeType);
 		}
 
-		// proxy for actions except Renamed
-		private void FSWAction (object sender, System.IO.FileSystemEventArgs e) {
-			this.FSWAddEvent(e.FullPath, e.ChangeType);
+		private void FSW_Renamed (object sender, System.IO.RenamedEventArgs e) {
+			this.FSW_AddEvent(e.OldFullPath, System.IO.WatcherChangeTypes.Deleted);
+			this.FSW_AddEvent(e.FullPath, System.IO.WatcherChangeTypes.Renamed);
 		}
 
-		private void FSWAddEvent (string fullPath, System.IO.WatcherChangeTypes changeType) {
+		private void FSW_AddEvent (string fullPath, System.IO.WatcherChangeTypes changeType) {
 			Project.Change pc = this.Changes.SingleOrDefault(pjc => pjc.Fullpath.Equals(fullPath) && pjc.ChangeType == changeType);
 			if (pc == null) {
 				Project.Change npc = new Project.Change() {
