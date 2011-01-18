@@ -230,6 +230,18 @@ namespace WatchIT {
 			}
 		}
 
+		private void openFolderToolStripMenuItem_Click (object sender, EventArgs e) {
+
+			foreach (ListViewItem lvi in this.lvPaths.SelectedItems) {
+
+				Project p = lvi.Tag as Project;
+
+				System.Diagnostics.Process.Start(p.Path);
+
+			}
+
+		}
+
 	}
 
 } // namespace
