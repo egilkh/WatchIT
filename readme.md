@@ -3,17 +3,21 @@
 A simple file tracker (created, renamed, deleted, edited) that keeps a list
 of all changes to a folder.
 
-It was written to track changes to projects I was involved in. Projects
-that had either no source control and the only source was in a ftp. When
-these project became big it would become hard to track what files I had 
-changed. Thus the tool!
+It was written to track changes to projects I was involved in. Projects that
+had no source control, the source was in a ftp or I was just handed a folder.
+When these project has a huge size and changes over time it becomes hard to
+know what files has been changed. And thus I decided to write a tool to help
+me keep track of things.
 
 ## Features
 
-* Add/Remove Paths to monitor.
-* InfoWindow for each Path showing what has changed.
+* Add/Remove *paths* to monitor.
+* A information window for each *Path* showing what has changed.
 * Ability to remove changes (one by one and everything)
 * DragDrop a change to another window (FileDrop)
+
+DragDrop functions carry over either the folder or file path. I use it to
+upload files via FileZilla, or open them in editor.
 	
 ## Misc
 
