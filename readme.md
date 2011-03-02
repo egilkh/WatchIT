@@ -18,6 +18,12 @@ me keep track of things.
 
 DragDrop functions carry over either the folder or file path. I use it to
 upload files via FileZilla, or open them in editor.
+
+## Screenshots
+
+* [MainWindow #1][ss1], shows the main window with full paths in the listing.
+* [MainWindow #2][ss2], shows the main window with only the folder name in the list.
+* [Path Info #1][ss3], show information about the selected path.
 	
 ## Misc
 
@@ -27,18 +33,6 @@ Icon was created using the image [My eye][myeye] created by
 [orangeacid]: http://www.flickr.com/photos/orangeacid "orangeacid on flickr.com"
 [flickr.com]: http://www.flickr.com "flickr.com"
 [myeye]: http://www.flickr.com/photos/orangeacid/234358923 "My eye"
-
-## Todo
-Add filtering of files: (*obj/, bin/*)
-	Think i need to create a system for this
-	Update filtering on: 	Enter Key
-				OnLeave event
-	txtFilter needs to anchor
-
-Checkbox to toggle the showing of files/folders
-
-Drag/Drop from MainWindow
-
-form.activated -> bring childs to front
-
-Show only 1 change for a file/folder.
+[ss1]: http://www.flickr.com/photos/egilkh/5490675965/ "MainWindow #1"
+[ss2]: http://www.flickr.com/photos/egilkh/5490675995/ "MainWindow #2"
+[ss3]: http://www.flickr.com/photos/egilkh/5490676021/ "Path Info #1"
