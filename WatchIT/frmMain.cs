@@ -31,6 +31,7 @@ namespace WatchIT {
 
 		private void MainForm_Load (object sender, EventArgs e) {
 
+			// tooltips
 			this.toolTip.SetToolTip(this.ckbBasename, "Only show the name of the last directory in listing.");
 
 			// 

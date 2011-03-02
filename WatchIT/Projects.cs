@@ -29,8 +29,13 @@ namespace WatchIT {
 
 		public void Setup (System.Windows.Forms.Form form) {
 			this.form = form;
+
 			foreach (Project p in this.projects) {
-				p.Setup(this.form);
+				if (!p.Setup(this.form)) {
+					System.Windows.Forms.MessageBox.Show(string.Format("Failed to initialize path: {0} \nProbably a deleted directory.", p.Path));
+					this.Remove(p);
+					continue;
+				}
 				if (this.OnAdd != null) { this.OnAdd(this, p); }
 			}
 		}

@@ -93,6 +93,11 @@ namespace WatchIT {
 		}
 
 		public bool Setup (System.Windows.Forms.Form form) {
+
+			if (!System.IO.Directory.Exists(this.Path)) {
+				return (false);
+			}
+
 			this.FSW.Path = this.Path;
 			this.FSW.Changed += this.FSW_Action;
 			this.FSW.Created += this.FSW_Action;
