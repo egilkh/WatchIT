@@ -120,6 +120,13 @@ namespace WatchIT {
 		}
 
 		private void FSW_AddEvent (string fullPath, System.IO.WatcherChangeTypes changeType) {
+
+			// We don't really want to track changes to directories
+			if (!System.IO.File.Exists(fullPath)) {
+				return;
+			}
+
+
 			Project.Change pc = this.Changes.SingleOrDefault(pjc => pjc.Fullpath.Equals(fullPath) && pjc.ChangeType == changeType);
 			if (pc == null) {
 				Project.Change npc = new Project.Change() {
