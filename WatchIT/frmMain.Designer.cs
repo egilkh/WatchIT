@@ -37,10 +37,10 @@
 			this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.ckbBasename = new System.Windows.Forms.CheckBox();
-			this.lblBottom = new System.Windows.Forms.Label();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.openFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ckbBasename = new System.Windows.Forms.CheckBox();
+			this.lblBottom = new System.Windows.Forms.Label();
 			this.lvPathsMenuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -104,26 +104,6 @@
 			this.removeToolStripMenuItem.Text = "Remove";
 			this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
 			// 
-			// ckbBasename
-			// 
-			this.ckbBasename.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.ckbBasename.AutoSize = true;
-			this.ckbBasename.Location = new System.Drawing.Point(290, 240);
-			this.ckbBasename.Name = "ckbBasename";
-			this.ckbBasename.Size = new System.Drawing.Size(82, 17);
-			this.ckbBasename.TabIndex = 1;
-			this.ckbBasename.Text = "Short Name";
-			this.ckbBasename.UseVisualStyleBackColor = true;
-			this.ckbBasename.CheckedChanged += new System.EventHandler(this.ckbBasename_CheckedChanged);
-			// 
-			// lblBottom
-			// 
-			this.lblBottom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.lblBottom.Location = new System.Drawing.Point(12, 237);
-			this.lblBottom.Name = "lblBottom";
-			this.lblBottom.Size = new System.Drawing.Size(272, 20);
-			this.lblBottom.TabIndex = 2;
-			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -135,6 +115,26 @@
 			this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.openFolderToolStripMenuItem.Text = "Open Folder";
 			this.openFolderToolStripMenuItem.Click += new System.EventHandler(this.openFolderToolStripMenuItem_Click);
+			// 
+			// ckbBasename
+			// 
+			this.ckbBasename.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.ckbBasename.AutoSize = true;
+			this.ckbBasename.Location = new System.Drawing.Point(296, 240);
+			this.ckbBasename.Name = "ckbBasename";
+			this.ckbBasename.Size = new System.Drawing.Size(76, 17);
+			this.ckbBasename.TabIndex = 1;
+			this.ckbBasename.Text = "Basename";
+			this.ckbBasename.UseVisualStyleBackColor = true;
+			this.ckbBasename.CheckedChanged += new System.EventHandler(this.ckbBasename_CheckedChanged);
+			// 
+			// lblBottom
+			// 
+			this.lblBottom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.lblBottom.Location = new System.Drawing.Point(12, 237);
+			this.lblBottom.Name = "lblBottom";
+			this.lblBottom.Size = new System.Drawing.Size(272, 20);
+			this.lblBottom.TabIndex = 2;
 			// 
 			// frmMain
 			// 
