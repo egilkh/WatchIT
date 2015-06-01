@@ -1,3 +1,5 @@
+Not maintained anymore. 
+
 # WatchIT
 
 A simple file tracker (created, renamed, deleted, edited) that keeps a list
